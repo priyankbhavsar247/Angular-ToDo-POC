@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="col-md-8 float-left">
+        <input class="form-control" type="text" ng-model="todo.title" />
+    </div>
+    <div>
+        <button class="btn btn-primary" ng-click="saveToDo($index)" type="submit">Add To-Do</button>
+    </div>
+    <div>
+        <ul class="list-group" style="margin-top: 5%;">
+            <h1 ng-hide="hideDiv" class="h3 mb-3 font-weight-normal"><label style="margin-left:1px">Manage To-Dos</label></h1>
+            <label ng-hide="hideDiv" class="form-check-label" style="margin-left:20px">
+                <input class="form-check-input" ng-model="selectAll" ng-click="toggleAll()" type="checkbox" >
+                Select All
+            </label>
+            <li class="list-group-item" ng-repeat="todo in todos">
+                <div class="form-check float-left">
+                    <label class="form-check-label"> 
+                        <input class="form-check-input" ng-model="todo.selected" ng-click="check()" ng-change="optionToggled()" type="checkbox">
+                        {{todo.title}}
+                        </label>
+                </div>
+
+                <div class="float-right">
+                    <button type="button" class="btn btn-default btn-sm" ng-click="editToDo($index)">
+                        Edit
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-sm" ng-click="deleteTodo($index)">
+                        Delete
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <div>
+        <button class="btn btn-primary" ng-click="deleteMultiple()"
+            ng-if="todos.length > 0" style="margin-top: 2%; margin-left: 40%;">Delete To-Do(s)
+        </button>
+    </div>
+    <div ng-if="showAlertDiv">
+        <h1 class="h3 mb-3 font-weight-normal" style="color : red; margin-left: 320px">
+            Please select atleast one item !
+        </h1>
+    </div>
+    </div>
